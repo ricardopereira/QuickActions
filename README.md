@@ -2,16 +2,29 @@
 
 
 # QuickActions
-Swift wrapper for iOS QuickActions (App Icon Shortcuts)
+Swift wrapper for [iOS Home Screen Quick Actions](https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543-CH1-SW2)
+
+This wrapper creates dynamic quick actions. It is possible to define static quick actions in your app’s Info.plist file but I think it is nicer to add localizable shortcuts dynamically and handle them with type safety.
 
 ## Usage
+
+Define your application shortcuts with an enum. Don't forget to declare the enum with `String` and `ShortcutType`:
+
+```swift
+enum ApplicationShortcut: String, ShortcutType {
+    case CreateCategory
+    case LastItems
+}
+```
 
 Install a list of shortcuts:
 
 
 ```swift
+var quickActions: QuickActions<ApplicationShortcut>?
+
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    let shortcuts = [Shortcut(id: "CreateExpense", title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
+    let shortcuts = [Shortcut(type: ApplicationShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
 
     if let rootViewController = window?.rootViewController, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
         quickActions = QuickActions(application, viewController: rootViewController, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
@@ -23,7 +36,7 @@ Add more shortcuts:
 
 ```swift
 func applicationDidEnterBackground(application: UIApplication) {
-    let shortcuts = [Shortcut(id: "LastItems", title: "Last items", subtitle: nil, icon: nil)]
+    let shortcuts = [Shortcut(type: ApplicationShortcut.LastItems, title: "Last items", subtitle: nil, icon: nil)]
     quickActions?.add(shortcuts, toApplication: application)
 }
 ```
@@ -45,8 +58,21 @@ Prepare your view controller using the `QuickActionSupport` protocol:
 ```swift
 class MainViewController: UIViewController, QuickActionSupport {
 
-    func prepareForQuickAction(shortcut: Shortcut) {
-        print(shortcut)
+    func prepareForQuickAction<T: ShortcutType>(shortcutType: T) {
+        if let shortcut = ApplicationShortcut(rawValue: shortcutType.value), case .CreateExpense = shortcut {
+            print("Prepare the view to create a new expense")
+        }
+
+        //or
+
+        if let shortcut = ApplicationShortcut(rawValue: shortcutType.value) {
+            switch shortcut {
+            case .CreateCategory:
+                print("Prepare the view to create a new category")
+            case .LastItems:
+                print("Prepare the view to show last items")
+            }
+        }
     }    
 
 }
