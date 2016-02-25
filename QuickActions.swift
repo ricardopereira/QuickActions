@@ -68,15 +68,31 @@ enum ShortcutIcon: Int {
 
 }
 
+protocol ShortcutType: RawRepresentable {}
+
+extension RawRepresentable where Self: ShortcutType {
+
+    init?(type: String) {
+        assert(type is RawValue)
+        // FIXME: try another solution to restrain the RawRepresentable as String
+        self.init(rawValue: type as! RawValue)
+    }
+
+    var value: String {
+        return self.rawValue as? String ?? ""
+    }
+
+}
+
 struct Shortcut {
 
-    let id: String
+    let type: String
     let title: String
     let subtitle: String?
     let icon: ShortcutIcon?
 
-    init(id: String, title: String, subtitle: String?, icon: ShortcutIcon) {
-        self.id = id
+    init<T: ShortcutType>(type: T, title: String, subtitle: String?, icon: ShortcutIcon) {
+        self.type = type.value
         self.title = title
         self.subtitle = subtitle
         self.icon = icon
@@ -89,10 +105,10 @@ extension Shortcut {
     @available(iOS 9.0, *)
     init(shortcutItem: UIApplicationShortcutItem) {
         if let range = shortcutItem.type.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "."), options: .BackwardsSearch) {
-            id = shortcutItem.type.substringFromIndex(range.endIndex)
+            type = shortcutItem.type.substringFromIndex(range.endIndex)
         }
         else {
-            id = "unknown"
+            type = "unknown"
         }
         title = shortcutItem.localizedTitle
         subtitle = shortcutItem.localizedSubtitle
@@ -102,7 +118,7 @@ extension Shortcut {
 
     @available(iOS 9.0, *)
     private func toApplicationShortcut(bundleIdentifier: String) -> UIApplicationShortcutItem {
-        return UIMutableApplicationShortcutItem(type: bundleIdentifier + "." + id, localizedTitle: title, localizedSubtitle: subtitle, icon: icon!.toApplicationShortcutIcon(), userInfo: nil)
+        return UIMutableApplicationShortcutItem(type: bundleIdentifier + "." + type, localizedTitle: title, localizedSubtitle: subtitle, icon: icon!.toApplicationShortcutIcon(), userInfo: nil)
     }
 
 }
@@ -119,11 +135,11 @@ extension UIApplicationShortcutItem {
 protocol QuickActionSupport {
 
     @available(iOS 9.0, *)
-    func prepareForQuickAction(shortcut: Shortcut)
+    func prepareForQuickAction<T: ShortcutType>(shortcutType: T)
 
 }
 
-class QuickActions {
+class QuickActions<T: ShortcutType> {
 
     let bundleIdentifier: String
 
@@ -153,7 +169,9 @@ class QuickActions {
     func handle(viewController: UIViewController?, shortcut: Shortcut) -> Bool {
         guard let viewController = viewController as? QuickActionSupport else { return false }
         if #available(iOS 9.0, *) {
-            viewController.prepareForQuickAction(shortcut)
+            // FIXME: Can't use `shortcutType`: Segmentation fault: 11
+            //let shortcutType = T.init(type: shortcut.type)
+            viewController.prepareForQuickAction(T.init(type: shortcut.type)!)
             return true
         }
         else {
