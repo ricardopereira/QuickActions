@@ -1,4 +1,4 @@
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg?style=flat-square)](https://cocoapods.org/pods/QuickActions) [![Platform support](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg?style=flat-square)](https://cocoapods.org/pods/QuickActions) [![Platform support](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE) [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE)
 
 
 # QuickActions
