@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ShortcutIcon: Int {
+public enum ShortcutIcon: Int {
     case Compose
     case Play
     case Pause
@@ -68,30 +68,30 @@ enum ShortcutIcon: Int {
 
 }
 
-protocol ShortcutType: RawRepresentable {}
+public protocol ShortcutType: RawRepresentable {}
 
-extension RawRepresentable where Self: ShortcutType {
+public extension RawRepresentable where Self: ShortcutType {
 
-    init?(type: String) {
+    public init?(type: String) {
         assert(type is RawValue)
         // FIXME: try another solution to restrain the RawRepresentable as String
         self.init(rawValue: type as! RawValue)
     }
 
-    var value: String {
+    public var value: String {
         return self.rawValue as? String ?? ""
     }
 
 }
 
-struct Shortcut {
+public struct Shortcut {
 
-    let type: String
-    let title: String
-    let subtitle: String?
-    let icon: ShortcutIcon?
+    public let type: String
+    public let title: String
+    public let subtitle: String?
+    public let icon: ShortcutIcon?
 
-    init<T: ShortcutType>(type: T, title: String, subtitle: String?, icon: ShortcutIcon) {
+    public init<T: ShortcutType>(type: T, title: String, subtitle: String?, icon: ShortcutIcon?) {
         self.type = type.value
         self.title = title
         self.subtitle = subtitle
@@ -100,10 +100,10 @@ struct Shortcut {
 
 }
 
-extension Shortcut {
+public extension Shortcut {
 
     @available(iOS 9.0, *)
-    init(shortcutItem: UIApplicationShortcutItem) {
+    public init(shortcutItem: UIApplicationShortcutItem) {
         if let range = shortcutItem.type.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "."), options: .BackwardsSearch) {
             type = shortcutItem.type.substringFromIndex(range.endIndex)
         }
@@ -124,26 +124,26 @@ extension Shortcut {
 }
 
 @available(iOS 9.0, *)
-extension UIApplicationShortcutItem {
+public extension UIApplicationShortcutItem {
 
-    var toShortcut: Shortcut {
+    public var toShortcut: Shortcut {
         return Shortcut(shortcutItem: self)
     }
 
 }
 
-protocol QuickActionSupport {
+public protocol QuickActionSupport {
 
     @available(iOS 9.0, *)
     func prepareForQuickAction<T: ShortcutType>(shortcutType: T)
 
 }
 
-class QuickActions<T: ShortcutType> {
+public class QuickActions<T: ShortcutType> {
 
-    let bundleIdentifier: String
+    private let bundleIdentifier: String
 
-    init(_ application: UIApplication, viewController: UIViewController?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: NSDictionary? = nil) {
+    public init(_ application: UIApplication, viewController: UIViewController?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: NSDictionary? = nil) {
         self.bundleIdentifier = bundleIdentifier
 
         if #available(iOS 9.0, *) {
@@ -162,11 +162,11 @@ class QuickActions<T: ShortcutType> {
     }
 
     @available(iOS 9.0, *)
-    func handle(viewController: UIViewController?, shortcutItem: UIApplicationShortcutItem) -> Bool {
+    public func handle(viewController: UIViewController?, shortcutItem: UIApplicationShortcutItem) -> Bool {
         return handle(viewController, shortcut: shortcutItem.toShortcut)
     }
 
-    func handle(viewController: UIViewController?, shortcut: Shortcut) -> Bool {
+    public func handle(viewController: UIViewController?, shortcut: Shortcut) -> Bool {
         guard let viewController = viewController as? QuickActionSupport else { return false }
         if #available(iOS 9.0, *) {
             // FIXME: Can't use `shortcutType`: Segmentation fault: 11
@@ -179,7 +179,7 @@ class QuickActions<T: ShortcutType> {
         }
     }
 
-    func add(shortcuts: [Shortcut], toApplication application: UIApplication) {
+    public func add(shortcuts: [Shortcut], toApplication application: UIApplication) {
         if #available(iOS 9.0, *) {
             var items = shortcuts.map { $0.toApplicationShortcut(bundleIdentifier) }
             items.appendContentsOf(application.shortcutItems ?? [])
@@ -187,11 +187,11 @@ class QuickActions<T: ShortcutType> {
         }
     }
 
-    func add(shortcut: Shortcut, toApplication application: UIApplication) {
+    public func add(shortcut: Shortcut, toApplication application: UIApplication) {
         add([shortcut], toApplication: application)
     }
 
-    func remove(shortcut: Shortcut, toApplication application: UIApplication) {
+    public func remove(shortcut: Shortcut, toApplication application: UIApplication) {
         if #available(iOS 9.0, *) {
             if let index = application.shortcutItems?.indexOf(shortcut.toApplicationShortcut(bundleIdentifier)) where index > -1 {
                 application.shortcutItems?.removeAtIndex(index)
@@ -199,7 +199,7 @@ class QuickActions<T: ShortcutType> {
         }
     }
 
-    func clear(application: UIApplication) {
+    public func clear(application: UIApplication) {
         if #available(iOS 9.0, *) {
             application.shortcutItems = nil
         }
