@@ -8,11 +8,15 @@ This wrapper creates dynamic quick actions. It is possible to define static quic
 
 ## Usage
 
+```swift
+import QuickActions
+```
+
 Define your application shortcuts with an enum. Don't forget to declare the enum with `String` and `ShortcutType`:
 
 ```swift
-enum ApplicationShortcut: String, ShortcutType {
-    case CreateCategory
+enum AppShortcut: String, ShortcutType {
+    case CreateExpense
     case LastItems
 }
 ```
@@ -21,10 +25,10 @@ Install a list of shortcuts:
 
 
 ```swift
-var quickActions: QuickActions<ApplicationShortcut>?
+var quickActions: QuickActions<AppShortcut>?
 
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    let shortcuts = [Shortcut(type: ApplicationShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
+    let shortcuts = [Shortcut(type: AppShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
 
     if let rootViewController = window?.rootViewController, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
         quickActions = QuickActions(application, viewController: rootViewController, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
@@ -36,7 +40,7 @@ Add more shortcuts:
 
 ```swift
 func applicationDidEnterBackground(application: UIApplication) {
-    let shortcuts = [Shortcut(type: ApplicationShortcut.LastItems, title: "Last items", subtitle: nil, icon: nil)]
+    let shortcuts = [Shortcut(type: AppShortcut.LastItems, title: "Last items", subtitle: nil, icon: nil)]
     quickActions?.add(shortcuts, toApplication: application)
 }
 ```
@@ -59,16 +63,16 @@ Prepare your view controller using the `QuickActionSupport` protocol:
 class MainViewController: UIViewController, QuickActionSupport {
 
     func prepareForQuickAction<T: ShortcutType>(shortcutType: T) {
-        if let shortcut = ApplicationShortcut(rawValue: shortcutType.value), case .CreateExpense = shortcut {
+        if let shortcut = AppShortcut(rawValue: shortcutType.value), case .CreateExpense = shortcut {
             print("Prepare the view to create a new expense")
         }
 
         //or
 
-        if let shortcut = ApplicationShortcut(rawValue: shortcutType.value) {
+        if let shortcut = AppShortcut(rawValue: shortcutType.value) {
             switch shortcut {
-            case .CreateCategory:
-                print("Prepare the view to create a new category")
+            case .CreateExpense:
+                print("Prepare the view to create a new expense")
             case .LastItems:
                 print("Prepare the view to show last items")
             }
