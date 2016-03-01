@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "QuickActions"
-  s.version          = "1.1"
+  s.version          = "1.2"
   s.summary          = "Swift wrapper for iOS Home Screen Quick Actions"
   s.homepage         = "https://github.com/ricardopereira/QuickActions"
   s.license          = 'MIT'
@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = '*.{h,swift}'
+  s.source_files = 'QuickActions/*.{h}', 'Source/**/*.{h,swift}'
   s.frameworks = 'UIKit'
 end
