@@ -119,6 +119,10 @@ use_frameworks!
 
 Then run `pod install` with CocoaPods 0.36 or newer.
 
+#### Manually
+1. Download and drop ```QuickActions.swift``` in your project.  
+2. Congratulations! 
+
 ## Requirements
 
 * iOS 8.0+
