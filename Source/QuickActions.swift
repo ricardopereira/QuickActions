@@ -143,7 +143,7 @@ public class QuickActions<T: ShortcutType> {
 
     private let bundleIdentifier: String
 
-    public init(_ application: UIApplication, viewController: UIViewController?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: NSDictionary? = nil) {
+    public init(_ application: UIApplication, actionHandler: QuickActionSupport?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: NSDictionary? = nil) {
         self.bundleIdentifier = bundleIdentifier
 
         if #available(iOS 9.0, *) {
@@ -151,7 +151,7 @@ public class QuickActions<T: ShortcutType> {
         }
 
         if #available(iOS 9.0, *), let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-            handle(viewController, shortcutItem: shortcutItem)
+            handle(actionHandler, shortcutItem: shortcutItem)
         }
     }
 
@@ -162,12 +162,12 @@ public class QuickActions<T: ShortcutType> {
     }
 
     @available(iOS 9.0, *)
-    public func handle(viewController: UIViewController?, shortcutItem: UIApplicationShortcutItem) -> Bool {
-        return handle(viewController, shortcut: shortcutItem.toShortcut)
+    public func handle(actionHandler: QuickActionSupport?, shortcutItem: UIApplicationShortcutItem) -> Bool {
+        return handle(actionHandler, shortcut: shortcutItem.toShortcut)
     }
 
-    public func handle(viewController: UIViewController?, shortcut: Shortcut) -> Bool {
-        guard let viewController = viewController as? QuickActionSupport else { return false }
+    public func handle(actionHandler: QuickActionSupport?, shortcut: Shortcut) -> Bool {
+        guard let viewController = actionHandler else { return false }
         if #available(iOS 9.0, *) {
             // FIXME: Can't use `shortcutType`: Segmentation fault: 11
             //let shortcutType = T.init(type: shortcut.type)
