@@ -1,4 +1,7 @@
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg?style=flat-square)](https://cocoapods.org/pods/QuickActions) [![Platform support](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE) [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ricardopereira/QuickActions/blob/master/LICENSE)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg)](https://cocoapods.org/pods/QuickActions)
+[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
 # QuickActions
@@ -16,8 +19,8 @@ Define your application shortcuts with an enum. Don't forget to declare the enum
 
 ```swift
 enum AppShortcut: String, ShortcutType {
-    case CreateExpense
-    case LastItems
+    case createExpense
+    case lastItems
 }
 ```
 
@@ -27,11 +30,11 @@ Install a list of shortcuts:
 ```swift
 var quickActions: QuickActions<AppShortcut>?
 
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
     let shortcuts = [Shortcut(type: AppShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
 
-    if let rootViewController = window?.rootViewController, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
-        quickActions = QuickActions(application, viewController: rootViewController, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
+    if let actionHandler = window?.rootViewController as? QuickActionSupport, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
+        quickActions = QuickActions(application, actionHandler: actionHandler, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
     }
 }
 ```
@@ -40,7 +43,7 @@ Add more shortcuts:
 
 ```swift
 func applicationDidEnterBackground(application: UIApplication) {
-    let shortcuts = [Shortcut(type: AppShortcut.LastItems, title: "Last items", subtitle: nil, icon: nil)]
+    let shortcuts = [Shortcut(type: AppShortcut.lastItems, title: "Last items", subtitle: nil, icon: nil)]
     quickActions?.add(shortcuts, toApplication: application)
 }
 ```
@@ -49,11 +52,15 @@ Handle each shortcut:
 
 ```swift
 @available(iOS 9, *)
-func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Swift.Void) {
     // This callback is used if your application is already launched in the background, if not application(_:,willFinishLaunchingWithOptions:) or application(_:didFinishLaunchingWithOptions) will be called (handle the shortcut in those callbacks and return `false`)
-    guard let quickActions = quickActions else { return completionHandler(false) }
-    guard let rootViewController = window?.rootViewController else { return completionHandler(false) }
-    completionHandler(quickActions.handle(rootViewController, shortcutItem: shortcutItem))
+    guard let quickActions = quickActions else {
+        return completionHandler(false)
+    }
+    guard let actionHandler = window?.rootViewController as? QuickActionSupport else {
+        return completionHandler(false)
+    }
+    completionHandler(quickActions.handle(actionHandler, shortcutItem: shortcutItem))
 }
 ```
 
@@ -62,8 +69,8 @@ Prepare your view controller using the `QuickActionSupport` protocol:
 ```swift
 class MainViewController: UIViewController, QuickActionSupport {
 
-    func prepareForQuickAction<T: ShortcutType>(shortcutType: T) {
-        if let shortcut = AppShortcut(rawValue: shortcutType.value), case .CreateExpense = shortcut {
+    func prepareForQuickAction<T: ShortcutType>(_ shortcutType: T) {
+        if let shortcut = AppShortcut(rawValue: shortcutType.value), case .createExpense = shortcut {
             print("Prepare the view to create a new expense")
         }
 
@@ -71,9 +78,9 @@ class MainViewController: UIViewController, QuickActionSupport {
 
         if let shortcut = AppShortcut(rawValue: shortcutType.value) {
             switch shortcut {
-            case .CreateExpense:
+            case .createExpense:
                 print("Prepare the view to create a new expense")
-            case .LastItems:
+            case .lastItems:
                 print("Prepare the view to show last items")
             }
         }
@@ -91,7 +98,7 @@ class MainViewController: UIViewController, QuickActionSupport {
 To install it, simply add the following line to your **Cartfile**:
 
 ```ruby
-github "ricardopereira/QuickActions"
+github "ricardopereira/QuickActions" "2.0.0.beta.1"
 ```
 
 Then run `carthage update`.
@@ -108,7 +115,7 @@ for up to date installation instructions.
 To install it, simply add the following line to your **Podfile**:
 
 ```ruby
-pod "QuickActions"
+pod "QuickActions", :git => 'https://github.com/ricardopereira/QuickActions.git', :tag => '2.0.0.beta.1'
 ```
 
 You will also need to make sure you're opting into using frameworks:
@@ -117,7 +124,7 @@ You will also need to make sure you're opting into using frameworks:
 use_frameworks!
 ```
 
-Then run `pod install` with CocoaPods 0.36 or newer.
+Then run `pod install` with CocoaPods 1.1.0.beta.1 or newer.
 
 #### Manually
 1. Download and drop ```QuickActions.swift``` in your project.  
@@ -125,8 +132,8 @@ Then run `pod install` with CocoaPods 0.36 or newer.
 
 ## Requirements
 
-* iOS 8.0+
-* Xcode 7 (Swift 2.0)
+* iOS 9.0+
+* Xcode 8 (Swift 3.0)
 
 ## Author
 
