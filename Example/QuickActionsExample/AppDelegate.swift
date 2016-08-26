@@ -10,8 +10,8 @@ import UIKit
 import QuickActions
 
 enum AppShortcut: String, ShortcutType {
-    case CreateExpense
-    case LastItems
+    case createExpense
+    case lastItems
 }
 
 @UIApplicationMain
@@ -27,22 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let shortcuts = [
             Shortcut(
-                type: AppShortcut.CreateExpense,
+                type: AppShortcut.createExpense,
                 title: NSLocalizedString("CreateExpenseTitle", comment: ""),
                 subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""),
                 icon: .add
             )
         ]
 
-        if let rootViewController = window?.rootViewController as? QuickActionSupport,
+        if let actionHandler = window?.rootViewController as? QuickActionSupport,
            let bundleIdentifier = Bundle.main.bundleIdentifier {
-            quickActions = QuickActions(application, actionHandler: rootViewController, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
+            quickActions = QuickActions(application, actionHandler: actionHandler, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
         }
         return true
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        let shortcuts = [Shortcut(type: AppShortcut.LastItems, title: "Last items", subtitle: nil, icon: nil)]
+        let shortcuts = [Shortcut(type: AppShortcut.lastItems, title: "Last items", subtitle: nil, icon: nil)]
         quickActions?.add(shortcuts, toApplication: application)
     }
 
@@ -52,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let quickActions = quickActions else {
             return completionHandler(false)
         }
-        guard let rootViewController = window?.rootViewController as? QuickActionSupport else {
+        guard let actionHandler = window?.rootViewController as? QuickActionSupport else {
             return completionHandler(false)
         }
-        completionHandler(quickActions.handle(rootViewController, shortcutItem: shortcutItem))
+        completionHandler(quickActions.handle(actionHandler, shortcutItem: shortcutItem))
     }
 
 }

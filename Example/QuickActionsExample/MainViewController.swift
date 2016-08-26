@@ -17,7 +17,7 @@ class MainViewController: UIViewController, QuickActionSupport {
     }
 
     func prepareForQuickAction<T: ShortcutType>(_ shortcutType: T) {
-        if let shortcut = AppShortcut(rawValue: shortcutType.value), case .CreateExpense = shortcut {
+        if let shortcut = AppShortcut(rawValue: shortcutType.value), case .createExpense = shortcut {
             print("Prepare the view to create a new expense")
         }
     }
