@@ -9,28 +9,13 @@
 /* Begin PBXBuildFile section */
 		D701EF1E1C85AE10000DBF13 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701EF1D1C85AE10000DBF13 /* QuickActions.swift */; };
 		D7CCECAB1C82A35F001B07AB /* QuickActions.h in Headers */ = {isa = PBXBuildFile; fileRef = D7CCECAA1C82A35F001B07AB /* QuickActions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D7CCECB21C82A35F001B07AB /* QuickActions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7CCECA71C82A35F001B07AB /* QuickActions.framework */; };
-		D7CCECB71C82A35F001B07AB /* QuickActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CCECB61C82A35F001B07AB /* QuickActionsTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D7CCECB31C82A35F001B07AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7CCEC9E1C82A35F001B07AB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7CCECA61C82A35F001B07AB;
-			remoteInfo = QuickActions;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D701EF1D1C85AE10000DBF13 /* QuickActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickActions.swift; path = Source/QuickActions.swift; sourceTree = SOURCE_ROOT; };
 		D7CCECA71C82A35F001B07AB /* QuickActions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickActions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CCECAA1C82A35F001B07AB /* QuickActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickActions.h; sourceTree = "<group>"; };
 		D7CCECAC1C82A35F001B07AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7CCECB11C82A35F001B07AB /* QuickActionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickActionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7CCECB61C82A35F001B07AB /* QuickActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsTests.swift; sourceTree = "<group>"; };
-		D7CCECB81C82A35F001B07AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,14 +26,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7CCECAE1C82A35F001B07AB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7CCECB21C82A35F001B07AB /* QuickActions.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -56,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				D7CCECA91C82A35F001B07AB /* QuickActions */,
-				D7CCECB51C82A35F001B07AB /* QuickActionsTests */,
 				D7CCECA81C82A35F001B07AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				D7CCECA71C82A35F001B07AB /* QuickActions.framework */,
-				D7CCECB11C82A35F001B07AB /* QuickActionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,15 +53,6 @@
 				D7CCECAC1C82A35F001B07AB /* Info.plist */,
 			);
 			path = QuickActions;
-			sourceTree = "<group>";
-		};
-		D7CCECB51C82A35F001B07AB /* QuickActionsTests */ = {
-			isa = PBXGroup;
-			children = (
-				D7CCECB61C82A35F001B07AB /* QuickActionsTests.swift */,
-				D7CCECB81C82A35F001B07AB /* Info.plist */,
-			);
-			path = QuickActionsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,24 +87,6 @@
 			productReference = D7CCECA71C82A35F001B07AB /* QuickActions.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D7CCECB01C82A35F001B07AB /* QuickActionsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D7CCECBE1C82A35F001B07AB /* Build configuration list for PBXNativeTarget "QuickActionsTests" */;
-			buildPhases = (
-				D7CCECAD1C82A35F001B07AB /* Sources */,
-				D7CCECAE1C82A35F001B07AB /* Frameworks */,
-				D7CCECAF1C82A35F001B07AB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7CCECB41C82A35F001B07AB /* PBXTargetDependency */,
-			);
-			name = QuickActionsTests;
-			productName = QuickActionsTests;
-			productReference = D7CCECB11C82A35F001B07AB /* QuickActionsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -146,14 +94,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ricardo Pereira";
 				TargetAttributes = {
 					D7CCECA61C82A35F001B07AB = {
 						CreatedOnToolsVersion = 7.2.1;
-					};
-					D7CCECB01C82A35F001B07AB = {
-						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -170,20 +116,12 @@
 			projectRoot = "";
 			targets = (
 				D7CCECA61C82A35F001B07AB /* QuickActions */,
-				D7CCECB01C82A35F001B07AB /* QuickActionsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D7CCECA51C82A35F001B07AB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7CCECAF1C82A35F001B07AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,23 +139,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7CCECAD1C82A35F001B07AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7CCECB71C82A35F001B07AB /* QuickActionsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D7CCECB41C82A35F001B07AB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7CCECA61C82A35F001B07AB /* QuickActions */;
-			targetProxy = D7CCECB31C82A35F001B07AB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D7CCECB91C82A35F001B07AB /* Debug */ = {
@@ -233,13 +155,15 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2016.08.26.18.15;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -281,13 +205,15 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2016.08.26.18.15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -302,6 +228,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -313,9 +240,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = QuickActions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -324,6 +252,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -331,9 +260,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2.0;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = QuickActions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -341,26 +271,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.ricardopereira.QuickActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		D7CCECBF1C82A35F001B07AB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = QuickActionsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eu.ricardopereira.QuickActionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		D7CCECC01C82A35F001B07AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = QuickActionsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eu.ricardopereira.QuickActionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -381,15 +292,6 @@
 			buildConfigurations = (
 				D7CCECBC1C82A35F001B07AB /* Debug */,
 				D7CCECBD1C82A35F001B07AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7CCECBE1C82A35F001B07AB /* Build configuration list for PBXNativeTarget "QuickActionsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D7CCECBF1C82A35F001B07AB /* Debug */,
-				D7CCECC01C82A35F001B07AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
