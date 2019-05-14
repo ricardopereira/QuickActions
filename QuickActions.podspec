@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "QuickActions"
-  s.version          = "4.0.0"
+  s.version          = "5.0.0"
   s.summary          = "Swift wrapper for iOS Home Screen Quick Actions"
   s.homepage         = "https://github.com/ricardopereira/QuickActions"
   s.license          = 'MIT'
