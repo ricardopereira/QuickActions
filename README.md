@@ -99,7 +99,7 @@ class MainViewController: UIViewController, QuickActionSupport {
 To install it, simply add the following line to your **Cartfile**:
 
 ```ruby
-github "ricardopereira/QuickActions" ~> 2.0.0
+github "ricardopereira/QuickActions" ~> 4.0.0
 ```
 
 Then run `carthage update`.
@@ -116,7 +116,7 @@ for up to date installation instructions.
 To install it, simply add the following line to your **Podfile**:
 
 ```ruby
-pod 'QuickActions' '~> 2.0.0'
+pod 'QuickActions' '~> 4.0.0'
 ```
 
 You will also need to make sure you're opting into using frameworks:
