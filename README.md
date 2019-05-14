@@ -1,6 +1,6 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg)](https://cocoapods.org/pods/QuickActions)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -34,7 +34,7 @@ var quickActions: QuickActions<AppShortcut>?
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     let shortcuts = [Shortcut(type: AppShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
 
-    if let actionHandler = window?.rootViewController as? QuickActionSupport, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
+    if let actionHandler = window?.rootViewController as? QuickActionSupport, bundleIdentifier = Bundle.main.bundleIdentifier {
         quickActions = QuickActions(application, actionHandler: actionHandler, bundleIdentifier: bundleIdentifier, shortcuts: shortcuts, launchOptions: launchOptions)
     }
 }
@@ -125,7 +125,7 @@ You will also need to make sure you're opting into using frameworks:
 use_frameworks!
 ```
 
-Then run `pod install` with CocoaPods 1.1.0 or newer.
+Then run `pod install` with CocoaPods 1.6.0 or newer.
 
 #### Manually
 1. Download and drop ```QuickActions.swift``` in your project.  
@@ -134,7 +134,7 @@ Then run `pod install` with CocoaPods 1.1.0 or newer.
 ## Requirements
 
 * iOS 8.1+
-* Xcode 10 (Swift 4.2)
+* Xcode 10.2 (Swift 5.0)
 
 ## Author
 
