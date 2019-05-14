@@ -1,6 +1,6 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg)](https://cocoapods.org/pods/QuickActions)
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -31,7 +31,7 @@ Install a list of shortcuts:
 ```swift
 var quickActions: QuickActions<AppShortcut>?
 
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     let shortcuts = [Shortcut(type: AppShortcut.CreateExpense, title: NSLocalizedString("CreateExpenseTitle", comment: ""), subtitle: NSLocalizedString("CreateExpenseSubTitle", comment: ""), icon: .Add)]
 
     if let actionHandler = window?.rootViewController as? QuickActionSupport, bundleIdentifier = NSBundle.mainBundle().bundleIdentifier {
@@ -133,8 +133,8 @@ Then run `pod install` with CocoaPods 1.1.0 or newer.
 
 ## Requirements
 
-* iOS 9.0+
-* Xcode 8 (Swift 3.0)
+* iOS 8.1+
+* Xcode 10 (Swift 4.2)
 
 ## Author
 
