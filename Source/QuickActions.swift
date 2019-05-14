@@ -47,10 +47,10 @@ public enum ShortcutIcon: Int {
             return nil
         }
         if #available(iOS 9.1, *) {
-            let icon = UIApplicationShortcutIconType(rawValue: self.rawValue) ?? UIApplicationShortcutIconType.confirmation
+            let icon = UIApplicationShortcutIcon.IconType(rawValue: self.rawValue) ?? UIApplicationShortcutIcon.IconType.confirmation
             return UIApplicationShortcutIcon(type: icon)
         } else {
-            let icon = UIApplicationShortcutIconType(rawValue: self.rawValue) ?? UIApplicationShortcutIconType.add
+            let icon = UIApplicationShortcutIcon.IconType(rawValue: self.rawValue) ?? UIApplicationShortcutIcon.IconType.add
             return UIApplicationShortcutIcon(type: icon)
         }
     }
@@ -105,7 +105,7 @@ public extension Shortcut {
     @available(iOS 9.0, *)
     public init(shortcutItem: UIApplicationShortcutItem) {
         if let range = shortcutItem.type.rangeOfCharacter(from: CharacterSet(charactersIn: "."), options: .backwards) {
-            type = shortcutItem.type.substring(from: range.upperBound)
+            type = String(shortcutItem.type[range.upperBound...])
         }
         else {
             type = "unknown"
@@ -143,7 +143,7 @@ open class QuickActions<T: ShortcutType> {
 
     fileprivate let bundleIdentifier: String
 
-    public init(_ application: UIApplication, actionHandler: QuickActionSupport?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) {
+    public init(_ application: UIApplication, actionHandler: QuickActionSupport?, bundleIdentifier: String, shortcuts: [Shortcut], launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) {
         self.bundleIdentifier = bundleIdentifier
 
         if #available(iOS 9.0, *) {
