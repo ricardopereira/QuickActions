@@ -46,13 +46,8 @@ public enum ShortcutIcon: Int {
             NSException(name: NSExceptionName(rawValue: "Invalid option"), reason: "`Custom` type need to be used with `toApplicationShortcutIcon:imageName`", userInfo: nil).raise()
             return nil
         }
-        if #available(iOS 9.1, *) {
-            let icon = UIApplicationShortcutIcon.IconType(rawValue: self.rawValue) ?? UIApplicationShortcutIcon.IconType.confirmation
-            return UIApplicationShortcutIcon(type: icon)
-        } else {
-            let icon = UIApplicationShortcutIcon.IconType(rawValue: self.rawValue) ?? UIApplicationShortcutIcon.IconType.add
-            return UIApplicationShortcutIcon(type: icon)
-        }
+        let icon = UIApplicationShortcutIcon.IconType(rawValue: self.rawValue) ?? UIApplicationShortcutIcon.IconType.confirmation
+        return UIApplicationShortcutIcon(type: icon)
     }
 
     @available(iOS 9.0, *)
