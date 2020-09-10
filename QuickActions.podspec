@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "QuickActions"
-  s.version          = "6.0.0"
+  s.version          = "6.0.1"
   s.summary          = "Swift wrapper for iOS Home Screen Quick Actions"
   s.homepage         = "https://github.com/ricardopereira/QuickActions"
   s.license          = 'MIT'
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/ricardopereira/QuickActions.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ricardopereiraw'
 
-  s.platform     = :ios, '8.1'
+  s.platform     = :ios, '10.0'
   s.requires_arc = true
   s.swift_version = '5.0'
 
