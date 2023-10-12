@@ -1,4 +1,3 @@
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/QuickActions.svg)](https://cocoapods.org/pods/QuickActions)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](http://www.apple.com/ios/)
@@ -8,7 +7,7 @@
 # QuickActions
 Swift wrapper for [iOS Home Screen Quick Actions](https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543-CH1-SW2)
 
-This wrapper creates dynamic quick actions. It is possible to define static quick actions in your app’s Info.plist file but I think it is nicer to add localizable shortcuts dynamically and handle them with type safety.
+This wrapper helps you create dynamic Quick Actions. It is possible to define static quick actions in your app’s `Info.plist` file and also add localizable shortcuts dynamically and handle them with type safety.
 
 ## Usage
 
@@ -92,23 +91,6 @@ class MainViewController: UIViewController, QuickActionSupport {
 
 ## Installation
 
-#### <img src="https://cloud.githubusercontent.com/assets/432536/5252404/443d64f4-7952-11e4-9d26-fc5cc664cb61.png" width="24" height="24"> [Carthage]
-
-[Carthage]: https://github.com/Carthage/Carthage
-
-To install it, simply add the following line to your **Cartfile**:
-
-```ruby
-github "ricardopereira/QuickActions" ~> 6.0.0
-```
-
-Then run `carthage update`.
-
-Follow the current instructions in [Carthage's README][carthage-installation]
-for up to date installation instructions.
-
-[carthage-installation]: https://github.com/Carthage/Carthage#adding-frameworks-to-an-application
-
 #### <img src="https://raw.githubusercontent.com/ricardopereira/resources/master/img/cocoapods.png" width="24" height="24"> [CocoaPods]
 
 [CocoaPods]: http://cocoapods.org
@@ -133,12 +115,12 @@ Then run `pod install` with CocoaPods 1.8.0 or newer.
 
 ## Requirements
 
-* iOS 10.0+
-* Xcode 11.0 (Swift 5)
+* iOS 12+
+* Xcode 13+ (Swift 5)
 
 ## Author
 
-Ricardo Pereira, [@ricardopereiraw](https://twitter.com/ricardopereiraw)
+Ricardo Pereira, [@ricardopereiraw](https://mastodon.social/@ricardopereira)
 
 ## License
 
