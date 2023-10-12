@@ -162,12 +162,24 @@ open class QuickActions<T: ShortcutType> {
         return handle(actionHandler, shortcut: shortcutItem.toShortcut)
     }
 
+    @discardableResult
     open func handle(_ actionHandler: QuickActionSupport?, shortcut: Shortcut) -> Bool {
         guard let viewController = actionHandler else { return false }
         if #available(iOS 9.0, *) {
-            // FIXME: Can't use `shortcutType`: Segmentation fault: 11
-            //let shortcutType = T.init(type: shortcut.type)
-            viewController.prepareForQuickAction(T.init(type: shortcut.type)!)
+            let shortcutType = T.init(type: shortcut.type)!
+            viewController.prepareForQuickAction(shortcutType)
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    @discardableResult
+    open func handle(_ actionHandler: QuickActionSupport?, shortcutType: T) -> Bool {
+        guard let viewController = actionHandler else { return false }
+        if #available(iOS 9.0, *) {
+            viewController.prepareForQuickAction(shortcutType)
             return true
         }
         else {
