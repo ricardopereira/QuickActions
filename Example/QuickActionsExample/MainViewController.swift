@@ -13,7 +13,7 @@ class MainViewController: UIViewController, QuickActionSupport {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = .red
     }
 
     func prepareForQuickAction<T: ShortcutType>(_ shortcutType: T) {
