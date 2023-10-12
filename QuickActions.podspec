@@ -6,9 +6,9 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Ricardo Pereira" => "m@ricardopereira.eu" }
   s.source           = { :git => "https://github.com/ricardopereira/QuickActions.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/ricardopereiraw'
+  s.social_media_url = 'https://mastodon.social/@ricardopereira'
 
-  s.platform     = :ios, '10.0'
+  s.platform     = :ios, '12.0'
   s.requires_arc = true
   s.swift_version = '5.0'
 
